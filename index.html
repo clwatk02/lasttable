@@ -5,102 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Last Table — Exclusive tables for the fashionably late</title>
   <meta name="description" content="Last Table gets you exclusive dining access even when you're fashionably late." />
-  <meta property="og:title" content="Last Table — Exclusive tables for the fashionably late" />
-  <meta property="og:description" content="VIP dining access, even when you're fashionably late." />
-  <meta property="og:image" content="/assets/og-image.png" />
-  <meta name="theme-color" content="#0b0b0d" />
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/assets/css/custom.css" />
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            blacklux: '#0b0b0d',
-            champagne: '#F2E2C4',
-            goldlux: '#D4B483',
-            offwhite: '#F7F4EE',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'ui-sans-serif', 'Segoe UI', 'Roboto'],
-            serif: ['Playfair Display', 'Georgia', 'serif']
-          }
-        }
-      },
-      darkMode: 'class'
-    }
-  </script>
-  <style>
-    body{font-family:Inter,system-ui,Segoe UI,Roboto;} h1,h2,h3,.display{font-family:'Playfair Display',Georgia,serif;}
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Last Table",
-    "url": "https://lasttable.vip",
-    "logo": "/assets/logo/lasttable.png",
-    "sameAs": []
-  }
-  </script>
-  <!-- Optional Analytics (replace with your domain) -->
-  <script defer data-domain="lasttable.vip" src="https://plausible.io/js/script.js"></script>
-
-  <link rel="canonical" href="/">
-  <meta property="og:url" content="/">
+  <style>body{background:#0b0b0d;color:#F7F4EE}</style>
 </head>
-<body class="bg-blacklux text-offwhite">
-  <!-- Nav -->
-  <header class="sticky top-0 z-40 bg-blacklux/70 backdrop-blur border-b border-white/10">
+<body>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-black/60 backdrop-blur border-b border-white/10">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <img src="/assets/logo/lasttable.svg" alt="Last Table" class="h-10 w-auto">
-        <span class="sr-only">Last Table</span>
+      <a href="/" class="flex items-center gap-3">
+        <img src="/assets/logo/lasttable.svg" class="h-10" alt="Last Table"/>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
         <a href="#how" class="nav-link">How it works</a>
-        <a href="#faq" class="nav-link">FAQ</a><a href="/cities.html" class="nav-link">Cities</a><a href="/partners.html" class="nav-link">Partners</a><a href="/press-request.html" class="nav-link">Press</a>
+        <a href="/partners.html" class="nav-link">Partners</a>
         <a href="#waitlist" class="btn-primary">Join waitlist</a>
-      <a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><a href="/admin-tools.html" class="nav-link">Admin Tools</a><a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><a href="/dashboard.html" class="nav-link">Dashboard</a></nav>
+      </nav>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="relative"><div class="absolute inset-0" data-hero-wrap></div><div class="absolute inset-0 bg-blacklux/40"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
-    <div class="max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-5 gap-10 relative z-10">
+  <section class="relative">
+    <div class="max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-5 gap-10">
       <div class="md:col-span-3">
-        <div class="badge inline-flex items-center gap-2 mb-6">
-          <span class="h-2 w-2 rounded-full bg-champagne"></span>
-          Invite‑only beta
-        </div>
-        <h1 class="display text-5xl md:text-6xl font-semibold leading-[1.1]">
-          Exclusive tables <span class="champ-text">for the fashionably late</span>.
-        </h1>
-        <p class="mt-5 text-lg text-white/80 max-w-xl">
-          Missed your reservation window? We turn last‑minute availability into VIP access at the city’s most coveted rooms.
-        </p>
+        <div class="badge inline-flex items-center gap-2 mb-6"><span class="h-2 w-2 rounded-full bg-champagne"></span>Invite-only beta</div>
+        <h1 class="display text-5xl md:text-6xl font-semibold leading-[1.1]">Exclusive tables <span class="champ-text">for the fashionably late</span>.</h1>
+        <p class="mt-5 text-lg text-white/80 max-w-xl">Missed your reservation window? We turn last-minute availability into VIP access at the city’s most coveted rooms.</p>
         <div class="mt-8 flex items-center gap-4">
-          <a href="#waitlist" class="btn-primary"><span data-hero-cta-text>Join the waitlist</span></a>
+          <a href="#waitlist" class="btn-primary">Join the waitlist</a>
           <a href="#how" class="underline underline-offset-4 opacity-80 hover:opacity-100">See how it works</a>
         </div>
-        <div class="mt-6 flex gap-3 text-xs opacity-70">
-<div class="mt-4 flex flex-wrap gap-2" data-city-rail></div>
-          <span class="badge">No app yet</span>
-          <span class="badge">No card required</span>
-          <span class="badge">Curated venues</span>
-        </div>
+        <div class="mt-6 flex gap-3 text-xs opacity-70"><span class="badge">No app yet</span><span class="badge">No card required</span><span class="badge">Curated venues</span></div>
       </div>
       <div class="md:col-span-2">
         <div class="glass rounded-3xl p-6 border">
           <img src="/assets/logo/lasttable.png" alt="Last Table Logo" class="rounded-xl mb-4 w-full object-cover"/>
           <h3 class="font-semibold">Beta Access</h3>
-          <p class="text-sm opacity-80 mt-1">Join early to unlock launch‑week perks and priority invites.</p>
+          <p class="text-sm opacity-80 mt-1">Join early to unlock launch-week perks and priority invites.</p>
           <a href="#waitlist" class="mt-4 inline-block text-champagne underline underline-offset-4">Join now →</a>
         </div>
       </div>
@@ -110,225 +52,55 @@
   <!-- How it works -->
   <section id="how" class="py-16 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
-      <div class="glass p-6 rounded-3xl">
-        <div class="text-2xl">①</div>
-        <h3 class="mt-2 text-xl font-semibold">Tell us your vibe & window</h3>
-        <p class="opacity-80 mt-2">Pick cuisine, neighborhood, party size, and the time you’re rolling in.</p>
-      </div>
-      <div class="glass p-6 rounded-3xl">
-        <div class="text-2xl">②</div>
-        <h3 class="mt-2 text-xl font-semibold">We scan hidden availability</h3>
-        <p class="opacity-80 mt-2">Our network taps cancellations and late‑seating possibilities others miss.</p>
-      </div>
-      <div class="glass p-6 rounded-3xl">
-        <div class="text-2xl">③</div>
-        <h3 class="mt-2 text-xl font-semibold">Arrive like a regular</h3>
-        <p class="opacity-80 mt-2">Confirm your pick. Show up. Be seated. You’re in.</p>
-      </div>
+      <div class="glass p-6 rounded-3xl"><div class="text-2xl">①</div><h3 class="mt-2 text-xl font-semibold">Tell us your vibe & window</h3><p class="opacity-80 mt-2">Pick cuisine, neighborhood, party size, and the time you’re rolling in.</p></div>
+      <div class="glass p-6 rounded-3xl"><div class="text-2xl">②</div><h3 class="mt-2 text-xl font-semibold">We scan hidden availability</h3><p class="opacity-80 mt-2">Our network taps cancellations and late-seating possibilities others miss.</p></div>
+      <div class="glass p-6 rounded-3xl"><div class="text-2xl">③</div><h3 class="mt-2 text-xl font-semibold">Arrive like a regular</h3><p class="opacity-80 mt-2">Confirm your pick. Show up. Be seated. You’re in.</p></div>
     </div>
   </section>
 
-  <!-- Waitlist -->
+  <!-- Waitlist (FormSubmit) -->
   <section id="waitlist" class="py-20 border-t border-white/10">
     <div class="max-w-4xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
       <div>
         <h2 class="display text-4xl font-semibold">Join the private beta</h2>
         <p class="mt-3 opacity-80">Get early access and help shape the experience. Limited invites each week.</p>
         <ul class="mt-6 space-y-2 text-sm opacity-80 list-disc pl-5">
-          <li>We’ll email when your city opens.</li>
-          <li>No spam. No obligations.</li>
-          <li>Be the first to claim openings.</li>
+          <li>We’ll email when your city opens.</li><li>No spam. No obligations.</li><li>Be the first to claim openings.</li>
         </ul>
       </div>
       <div class="glass rounded-3xl p-6 border">
-        <!-- OPTION A: formsubmit.co (no backend) -->
-        <form id="waitlist-form" action="https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM" method="POST" class="space-y-4">
+        <form action="https://formsubmit.co/onzpoe@gmail.com" method="POST" class="space-y-4">
           <input type="hidden" name="_subject" value="Last Table — New Waitlist Signup">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
-          <div>
-            <label class="block text-sm mb-1">Your email</label>
-            <input required type="email" name="email" placeholder="you@domain.com" class="w-full px-4 py-3 rounded-xl text-black outline-none" />
-          </div>
+          <input type="hidden" name="_next" value="/thankyou.html">
+          <div><label class="block text-sm mb-1">Your email</label><input required type="email" name="email" class="w-full px-4 py-3 rounded-xl text-black outline-none" placeholder="you@domain.com"/></div>
           <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-sm mb-1">City</label>
-              <select name="city" id="city-select" class="w-full px-4 py-3 rounded-xl text-black outline-none"><option value="">Select a city</option></select>
-            </div>
-            <div>
-              <label class="block text-sm mb-1">Party size</label>
-              <input type="number" min="1" max="12" name="party" placeholder="2" class="w-full px-4 py-3 rounded-xl text-black outline-none" />
-            </div>
+            <div><label class="block text-sm mb-1">City</label><input name="city" class="w-full px-4 py-3 rounded-xl text-black outline-none" placeholder="Cincinnati / NYC / LA"/></div>
+            <div><label class="block text-sm mb-1">Party size</label><input type="number" min="1" max="12" name="party" class="w-full px-4 py-3 rounded-xl text-black outline-none" placeholder="2"/></div>
           </div>
-          <div>
-            <label class="block text-sm mb-1">Typical arrival window</label>
+          <div><label class="block text-sm mb-1">Typical arrival window</label>
             <select name="window" class="w-full px-4 py-3 rounded-xl text-black outline-none">
-              <option value="6-7pm">6–7 PM</option>
-              <option value="7-8pm">7–8 PM</option>
-              <option value="8-9pm">8–9 PM</option>
-              <option value="9-10pm">9–10 PM</option>
-              <option value="10pm+">10 PM+</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm mb-1">Vibe</label>
+              <option>6–7 PM</option><option>7–8 PM</option><option>8–9 PM</option><option>9–10 PM</option><option>10 PM+</option>
+            </select></div>
+          <div><label class="block text-sm mb-1">Vibe</label>
             <select name="vibe" class="w-full px-4 py-3 rounded-xl text-black outline-none">
-              <option>Upscale & hushed</option>
-              <option>Trendy & loud</option>
-              <option>Chef-driven</option>
-              <option>Classic steak</option>
-              <option>Hidden gem</option>
-            </select>
-          </div>
+              <option>Upscale & hushed</option><option>Trendy & loud</option><option>Chef-driven</option><option>Classic steak</option><option>Hidden gem</option>
+            </select></div>
           <button type="submit" class="btn-primary w-full">Request Invite</button>
-          <p class="text-xs opacity-70">We’ll confirm by email. By joining, you agree to be contacted about launch updates.</p>
+          <p class="text-xs opacity-70">We’ll confirm by email.</p>
         </form>
-        <!-- OPTION B: Netlify Forms — add netlify attribute & name="waitlist" to form and deploy on Netlify -->
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="py-16 border-t border-white/10">
-    <div class="max-w-5xl mx-auto px-4">
-      <h2 class="display text-3xl font-semibold mb-8">FAQ</h2>
-      <div class="grid md:grid-cols-2 gap-6" data-faq>
-        <div class="glass p-6 rounded-3xl">
-          <h3 class="font-semibold">Is this free?</h3>
-          <p class="opacity-80 mt-1">During beta, yes. We’re measuring demand and refining the experience.</p>
-        </div>
-        <div class="glass p-6 rounded-3xl">
-          <h3 class="font-semibold">Do I need an app?</h3>
-          <p class="opacity-80 mt-1">No app yet — access links will be emailed during beta.</p>
-        </div>
-        <div class="glass p-6 rounded-3xl">
-          <h3 class="font-semibold">Which cities?</h3>
-          <p class="opacity-80 mt-1">We’ll open cities in waves based on waitlist density.</p>
-        </div>
-        <div class="glass p-6 rounded-3xl">
-          <h3 class="font-semibold">Restaurants partnership?</h3>
-          <p class="opacity-80 mt-1">We work directly with venues and late‑seat opportunities; details at launch.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer class="border-t border-white/10 py-10">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <img src="/assets/favicon.svg" class="h-6 w-6" alt="LT icon">
-        <span class="text-sm opacity-80">© <span id="year"></span> Last Table</span>
-      </div>
-      <div class="flex items-center gap-6 text-sm">
-        <a href="#waitlist">Join Beta</a>
-        <a href="mailto:hello@lasttable.vip">Contact</a>
-        <a href="#">Privacy</a>
-      </div>
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center gap-3"><img src="/assets/favicon.svg" class="h-6 w-6" alt="LT icon"><span class="text-sm opacity-80">© <span id="year"></span> Last Table</span></div>
+      <div class="flex items-center gap-6 text-sm"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
     </div>
   </footer>
-
-  <script src="/assets/js/main.js"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
-
-  <script>
-  async function loadJSON(path){ const r = await fetch(path); return r.ok ? r.json() : null; }
-  (async()=>{
-    try{
-      const hero = await loadJSON('/content/hero.json');
-      if(hero){
-        const h1 = document.querySelector('[data-hero-headline]');
-        const p  = document.querySelector('[data-hero-subtext]');
-        const btn= document.querySelector('[data-hero-cta]');
-        const heroWrap = document.querySelector('[data-hero-wrap]');
-        if(h1) h1.textContent = hero.headline;
-        if(p) p.textContent = hero.subtext;
-        if(btn){ btn.textContent = hero.cta_text; btn.setAttribute('href', hero.cta_link || '#waitlist'); }
-        if(heroWrap && hero.image){
-          heroWrap.style.backgroundImage = `linear-gradient(180deg, rgba(11,11,13,0.55) 0%, rgba(11,11,13,0.9) 100%), url('${hero.image}')`;
-          heroWrap.style.backgroundSize = 'cover';
-          heroWrap.style.backgroundPosition = 'center';
-        }
-        // Meta updates
-        const titleEl = document.querySelector('title');
-        if(titleEl) titleEl.textContent = `Last Table — ${hero.headline}`;
-        const ogTitle = document.querySelector('meta[property="og:title"]');
-        if(ogTitle) ogTitle.setAttribute('content', `Last Table — ${hero.headline}`);
-        const ogDesc = document.querySelector('meta[property="og:description"]');
-        if(ogDesc && hero.subtext) ogDesc.setAttribute('content', hero.subtext);
-      }
-      const faq = await loadJSON('/content/faq.json');
-      if(faq && Array.isArray(faq.items)){
-        const mount = document.querySelector('[data-faq]');
-        if(mount){
-          mount.innerHTML='';
-          faq.items.forEach(({q,a})=>{
-            const card = document.createElement('div');
-            card.className = 'glass p-6 rounded-3xl';
-            card.innerHTML = `<h3 class="font-semibold"></h3><p class="opacity-80 mt-1"></p>`;
-            card.querySelector('h3').textContent = q;
-            card.querySelector('p').textContent = a;
-            mount.appendChild(card);
-          });
-        }
-      }
-    }catch(e){ console.warn('Content load error', e); }
-  })();
-  </script>
-
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <style>
-    .owner-toolbar{position:fixed;bottom:20px;right:20px;z-index:9999;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:10px;border-radius:14px;display:none}
-    .owner-toolbar a{display:inline-block;margin:0 6px;padding:8px 10px;border-radius:10px;background:#F2E2C4;color:#111;font-weight:600}
-    .owner-toolbar .ghost{background:transparent;color:#F2E2C4;border:1px solid rgba(255,255,255,.25)}
-  </style>
-  <div class="owner-toolbar" id="ownerBar">
-    <a href="/admin/#/collections/hero/entries/hero" target="_blank">Edit Hero</a>
-    <a href="/admin/#/collections/faq/entries/faq" target="_blank">Edit FAQ</a>
-    <a href="/admin" class="ghost" target="_blank">Open CMS</a>
-  </div>
-  <script>
-    function showOwnerBarIfAuth(){
-      const params = new URLSearchParams(location.search);
-      const wantEdit = params.get('edit') === '1';
-      const bar = document.getElementById('ownerBar');
-      const id = window.netlifyIdentity;
-      const user = id && id.currentUser ? id.currentUser() : null;
-      if (wantEdit && user) bar.style.display = 'block';
-      if(id){
-        id.on('init', u=>{ if (wantEdit && u) bar.style.display = 'block'; });
-        id.on('login', u=>{ if (wantEdit && u) bar.style.display = 'block'; });
-        id.on('logout', ()=>{ bar.style.display='none'; });
-      }
-    }
-    document.addEventListener('DOMContentLoaded', showOwnerBarIfAuth);
-  </script>
-
-  <script src="/assets/js/forms.js"></script>
-
-  <script>
-    async function loadCities(){
-      try{
-        const r = await fetch('/content/cities.json'); if(!r.ok) return;
-        const { cities } = await r.json();
-        const rail = document.querySelector('[data-city-rail]');
-        const sel = document.getElementById('city-select');
-        if(Array.isArray(cities)){
-          cities.forEach(c => {
-            if(sel){ const opt=document.createElement('option'); opt.value=c; opt.textContent=c; sel.appendChild(opt); }
-            if(rail){
-              const b = document.createElement('button');
-              b.className='badge hover:opacity-100';
-              b.textContent = c;
-              b.addEventListener('click',()=>{ if(sel){ sel.value=c; sel.dispatchEvent(new Event('change')); } location.href='/city.html?name='+encodeURIComponent(c); });
-              rail.appendChild(b);
-            }
-          });
-        }
-      }catch(e){}
-    }
-    document.addEventListener('DOMContentLoaded', loadCities);
-  </script>
-
-  <script src="/assets/js/settings.js"></script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
 </body>
 </html>
