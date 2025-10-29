@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Calendar — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+</head>
+<body class="bg-blacklux text-offwhite">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <h1 class="display text-4xl font-semibold">Reservation Calendar</h1>
+    <div id="nav" class="mt-4"></div>
+    <div id="grid" class="grid md:grid-cols-7 gap-2 mt-4"></div>
+  </div>
+  <script>
+    async function boot(){
+      const url = new URL(location.href);
+      const ym = url.searchParams.get('month');
+      const now = ym ? new Date(ym+'-01T00:00:00') : new Date();
+      const y = now.getFullYear(), m = now.getMonth();
+      const first = new Date(y, m, 1), last = new Date(y, m+1, 0);
+      document.getElementById('nav').innerHTML = \`
+        <div class="flex items-center gap-3">
+          <a class="btn-primary" href="?month=\${new Date(y,m-1,1).toISOString().slice(0,7)}">Prev</a>
+          <div class="opacity-80">\${now.toLocaleString('default',{month:'long'})} \${y}</div>
+          <a class="btn-primary" href="?month=\${new Date(y,m+1,1).toISOString().slice(0,7)}">Next</a>
+        </div>\`;
+      const res = await (await fetch('/content/reservations.json',{cache:'no-store'})).json();
+      const restaurants = await (await fetch('/content/restaurants.json',{cache:'no-store'})).json();
+      const rmap = new Map((restaurants.restaurants||[]).map(r=>[r.id,r]));
+      const list = (res.reservations||[]).filter(x=> x.date.slice(0,7) === \`\${y}-\${String(m+1).padStart(2,'0')}\`);
+      const days = Array.from({length: last.getDate()}, (_,i)=>i+1);
+      const grid = document.getElementById('grid'); grid.innerHTML='';
+      days.forEach(d=>{
+        const card = document.createElement('div');
+        card.className = 'glass p-3 rounded-2xl border text-sm';
+        card.innerHTML = '<div class="opacity-70 mb-2">'+d+'</div>';
+        list.filter(x=> parseInt(x.date.split('-')[2])===d).forEach(x=>{
+          const R = rmap.get(x.restaurant_id)||{};
+          const el = document.createElement('div');
+          el.className='mb-1';
+          el.innerHTML = \`\${x.time} • \${R.name||'—'} • <span class="opacity-70">\${x.status}</span>\`;
+          card.appendChild(el);
+        });
+        grid.appendChild(card);
+      });
+    }
+    boot();
+  </script>
+  <script src="/assets/js/settings.js"></script>
+</body>
+</html>

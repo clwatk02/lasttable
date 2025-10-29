@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "date": "2025-10-29",
+      "title": "Initial public MVP",
+      "notes": "Hero image, waitlist, FAQ, CMS, partners form."
+    },
+    {
+      "date": "2025-10-29",
+      "title": "Press kit & city selector",
+      "notes": "Press kit page, logo pack, city rail + select."
+    },
+    {
+      "date": "2025-10-29",
+      "title": "Partner portal stub",
+      "notes": "Identity-gated dashboard shell."
+    }
+  ]
+}

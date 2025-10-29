@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Last Table — Changelog</title>
+  <link>/changelog.html</link>
+  <description>Updates to Last Table</description>
+
+  <item>
+    <title>Initial public MVP</title>
+    <link>/changelog.html</link>
+    <description>Hero image, waitlist, FAQ, CMS, partners form.</description>
+    <pubDate>2025-10-29</pubDate>
+    <guid isPermaLink="false">2025-10-29-6543546712777475505</guid>
+  </item>
+  <item>
+    <title>Press kit & city selector</title>
+    <link>/changelog.html</link>
+    <description>Press kit page, logo pack, city rail + select.</description>
+    <pubDate>2025-10-29</pubDate>
+    <guid isPermaLink="false">2025-10-29-396591474715544538</guid>
+  </item>
+  <item>
+    <title>Partner portal stub</title>
+    <link>/changelog.html</link>
+    <description>Identity-gated dashboard shell.</description>
+    <pubDate>2025-10-29</pubDate>
+    <guid isPermaLink="false">2025-10-29-1916926716731172106</guid>
+  </item>
+</channel>
+</rss>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Tools — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body class="bg-blacklux text-offwhite">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div id="gate" class="glass p-6 rounded-3xl border text-center">
+      <h1 class="display text-3xl font-semibold">Admin Tools</h1>
+      <p class="opacity-80">Login required.</p>
+      <button id="login" class="btn-primary mt-4">Log in</button>
+    </div>
+    <div id="panel" class="hidden">
+      <div class="flex items-center justify-between">
+        <h2 class="display text-3xl font-semibold">Utilities</h2>
+        <button id="logout" class="btn-primary">Log out</button>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <div class="glass p-6 rounded-3xl border">
+          <h3 class="font-semibold">CSV → Reservations.json</h3>
+          <p class="text-sm opacity-80">Headers: id,restaurant_id,date,time,party,under_name,status,confirmation,transfer_notes,expires_at,token</p>
+          <input id="csv" type="file" accept=".csv" class="mt-3"/>
+          <button id="merge" class="btn-primary mt-3">Merge & Download</button>
+          <p id="csvMsg" class="text-xs opacity-70 mt-2"></p>
+        </div>
+        <div class="glass p-6 rounded-3xl border">
+          <h3 class="font-semibold">Mapbox Geocode</h3>
+          <p class="text-sm opacity-80">Requires Mapbox token in Admin → Settings</p>
+          <input id="addr" placeholder="Address…" class="w-full px-4 py-3 rounded-xl text-black outline-none mt-2"/>
+          <button id="geo" class="btn-primary mt-3">Geocode</button>
+          <p id="geoRes" class="text-sm opacity-80 mt-2"></p>
+        </div>
+      </div>
+        <div class="glass p-6 rounded-3xl border">
+          <h3 class="font-semibold">Export Reservations CSV</h3>
+          <p class="text-sm opacity-80">Download current reservations as CSV for sharing.</p>
+          <button id="exportCSV" class="btn-primary mt-3">Export CSV</button>
+        </div>
+    </div>
+  </div>
+  <script>
+    const id = window.netlifyIdentity;
+    const gate=document.getElementById('gate'), panel=document.getElementById('panel');
+    function upd(u){ if(u){ gate.classList.add('hidden'); panel.classList.remove('hidden'); } else { panel.classList.add('hidden'); gate.classList.remove('hidden'); } }
+    if(id){ id.on('init', upd); id.on('login', upd); id.on('logout', ()=>upd(null)); }
+    document.getElementById('login').onclick=()=>id && id.open('login');
+    document.getElementById('logout').onclick=()=>id && id.logout();
+
+    // CSV merge
+    document.getElementById('merge').addEventListener('click', async ()=>{
+      const f = document.getElementById('csv').files[0];
+      const msg = document.getElementById('csvMsg');
+      if(!f){ msg.textContent='Choose a CSV file first.'; return; }
+      const text = await f.text();
+      const rows = text.split(/\r?\n/).filter(Boolean).map(r=>r.split(','));
+      const headers = rows.shift().map(h=>h.trim());
+      const idx = Object.fromEntries(headers.map((h,i)=>[h,i]));
+      const res = await (await fetch('/content/reservations.json',{cache:'no-store'})).json();
+      const list = res.reservations || [];
+      const byId = new Map(list.map(x=>[x.id, x]));
+      rows.forEach(r=>{
+        const obj = {};
+        headers.forEach(h=>{ obj[h] = r[idx[h]]; });
+        byId.set(obj.id, Object.assign({}, byId.get(obj.id)||{}, obj));
+      });
+      const out = {reservations: Array.from(byId.values())};
+      const blob = new Blob([JSON.stringify(out,null,2)], {type:'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='reservations.json'; a.click();
+      msg.textContent='Merged file generated — upload in Admin → Reservations.';
+    });
+
+    // Mapbox geocode
+    document.getElementById('geo').addEventListener('click', async ()=>{
+      const q = document.getElementById('addr').value.trim();
+      const out = document.getElementById('geoRes');
+      const S = window.LT_SETTINGS || {};
+      if(!q){ out.textContent='Enter an address.'; return; }
+      if(!S.mapbox_token){ out.textContent='Add Mapbox token in Settings first.'; return; }
+      try{
+        const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(q)}.json?access_token=${S.mapbox_token}`;
+        const r = await fetch(url); const j = await r.json();
+        if(j.features && j.features[0]){
+          const [lng,lat] = j.features[0].center;
+          out.textContent = 'lat: '+lat+' , lng: '+lng;
+        } else out.textContent='No result';
+      }catch(_){ out.textContent='Error fetching coordinates'; }
+    });
+  
+    // Export CSV
+    document.getElementById('exportCSV').addEventListener('click', async ()=>{
+      const res = await (await fetch('/content/reservations.json',{cache:'no-store'})).json();
+      const list = res.reservations || [];
+      const headers = ["id","restaurant_id","date","time","party","under_name","status","confirmation","transfer_notes","expires_at","token"];
+      const rows = [headers.join(",")].concat(list.map(o=>headers.map(h=> (o[h]||'').toString().replaceAll('"','""')).map(x=>`"${x}"`).join(",")));
+      const blob = new Blob([rows.join("\r\n")], {type:'text/csv'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='reservations.csv'; a.click();
+    });
+  </script>
+  <script src="/assets/js/settings.js"></script>
+</body>
+</html>

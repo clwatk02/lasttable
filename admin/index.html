@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Last Table — Admin</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link href="https://unpkg.com/tailwindcss@^3/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/custom.css" />
+  <style>body{background:#0b0b0d;color:#F7F4EE}</style>
+</head>
+<body class="min-h-screen">
+  <header class="sticky top-0 z-40 bg-blacklux/70 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="/assets/logo/lasttable.svg" class="h-10" alt="Last Table">
+        <span class="text-sm opacity-80">Admin</span>
+      </div>
+      <div>
+        <a href="/" class="underline underline-offset-4 opacity-80 hover:opacity-100">← View Site</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Netlify CMS mounts here -->
+  <div id="nc-root"></div>
+
+  <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
+  <script>
+    window.CMS_MANUAL_INIT = true;
+    const config = { load_config_file: true };
+    NetlifyCms.init(config);
+
+    // Preview styles to match site
+    CMS.registerPreviewStyle('/assets/css/custom.css');
+    CMS.registerPreviewStyle('https://unpkg.com/tailwindcss@^3/dist/tailwind.min.css');
+
+    // Simple preview templates mirroring sections
+    const HeroPreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const headline = entry.getIn(['data','headline']);
+        const subtext = entry.getIn(['data','subtext']);
+        const image = entry.getIn(['data','image']);
+        return h('section', {className:'relative p-16 text-offwhite', style:{background:'#0b0b0d'}},
+          h('div', {className:'max-w-4xl'}, [
+            h('h1', {className:'display text-5xl font-semibold'}, headline),
+            h('p', {className:'mt-4 opacity-80'}, subtext),
+            h('div', {className:'mt-6 badge'}, 'Preview')
+          ])
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('hero', HeroPreview);
+  </script>
+</body>
+</html>

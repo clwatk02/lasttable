@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>City — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+</head>
+<body class="bg-blacklux text-offwhite">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div id="head"></div>
+    <div class="grid md:grid-cols-3 gap-6 mt-6">
+      <div class="md:col-span-2">
+        <div id="list"></div>
+      </div>
+      <div>
+        <div class="glass p-6 rounded-3xl border">
+          <h3 class="font-semibold">Join the waitlist</h3>
+          <form id="city-join" class="space-y-3 mt-2" action="https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM" method="POST" data-apps-script="">
+            <input type="hidden" name="_subject" value="Last Table — City Interest">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="city" id="cityField" value="">
+            <div><label class="block text-sm mb-1">Your email</label><input type="email" name="email" required class="w-full px-4 py-3 rounded-xl text-black outline-none"/></div>
+            <button class="btn-primary w-full" type="submit">Notify me</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    async function loadJSON(p){ const r=await fetch(p,{cache:'no-store'}); return r.ok? r.json():null; }
+    (async()=>{
+      const url = new URL(location.href);
+      const name = url.searchParams.get('name')||'';
+      document.title = name ? (name+' — Last Table') : 'City — Last Table';
+      document.getElementById('cityField').value = name;
+      const head = document.getElementById('head');
+      head.innerHTML = '<h1 class="display text-4xl font-semibold">'+(name||'City')+'</h1><p class="opacity-80 mt-2">Priority access opens by waitlist demand.</p>';
+      const data = await loadJSON('/content/restaurants.json');
+      const list = document.getElementById('list');
+      (data.restaurants||[]).filter(r=>r.city===name).forEach(r=>{
+        const card = document.createElement('div');
+        card.className='glass p-6 rounded-3xl border mb-4';
+        card.innerHTML = '<div class="text-sm opacity-70">'+r.city+'</div><div class="text-xl font-semibold">'+r.name+'</div><div class="opacity-80">'+r.address+'</div><div class="text-xs opacity-70 mt-1">'+(r.tags||[]).join(' • ')+'</div>';
+        list.appendChild(card);
+      });
+    })();
+  </script>
+  <script src="/assets/js/forms.js"></script>
+  <script src="/assets/js/settings.js"></script>
+</body>
+</html>

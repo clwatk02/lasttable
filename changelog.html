@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Changelog — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <style>body{background:#0b0b0d;color:#F7F4EE}</style>
+  <link rel="canonical" href="/">
+  <meta property="og:url" content="/">
+</head>
+<body>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="display text-4xl font-semibold">Changelog</h1>
+    <div class="mt-8 space-y-4" id="log"></div>
+  </div>
+  <script>
+    fetch('/content/changelog.json').then(r=>r.json()).then(d=>{
+      const log = document.getElementById('log');
+      (d.entries||[]).forEach(e=>{
+        const card = document.createElement('div');
+        card.className='glass p-6 rounded-3xl border';
+        card.innerHTML = `<div class="text-sm opacity-70">${e.date}</div><div class="text-xl font-semibold">${e.title}</div><p class="opacity-80 mt-2">${e.notes}</p>`;
+        log.appendChild(card);
+      });
+    });
+  </script>
+  <script src="/assets/js/settings.js"></script>
+</body>
+</html>

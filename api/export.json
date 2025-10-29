@@ -1,0 +1,120 @@
+{
+  "settings": {
+    "admin_email": "onzpoe@gmail.com",
+    "contact_email": "hello@lasttable.vip",
+    "site_url": "https://lasttable.vip",
+    "analytics_domain": "lasttable.vip",
+    "turnstile_sitekey": "",
+    "apps_script_url": "",
+    "waitlist_form_action": "https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM",
+    "partner_form_action": "https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM",
+    "show_portal": true
+  },
+  "theme": {
+    "colors": {
+      "background": "#0b0b0d",
+      "text": "#F7F4EE",
+      "primary": "#F2E2C4",
+      "accent": "#D4B483",
+      "muted": "#1a1a1d",
+      "border": "rgba(255,255,255,.10)"
+    },
+    "fonts": {
+      "heading": "Playfair Display, Georgia, serif",
+      "body": "Inter, system-ui, Segoe UI, Roboto, sans-serif"
+    },
+    "radius": {
+      "card": 24,
+      "button": 9999
+    }
+  },
+  "flags": {
+    "maintenance_mode": false,
+    "announcement_enabled": true,
+    "announcement_text": "Now accepting partner applications for beta launch.",
+    "beta_code_required": false,
+    "beta_code_value": ""
+  },
+  "emails": {
+    "waitlist_subject": "Last Table \u2014 Thanks for joining the waitlist",
+    "waitlist_body_text": "Thanks for joining Last Table. We\u2019ll reach out when your city opens.",
+    "partner_subject": "Last Table \u2014 Partner request received",
+    "partner_body_text": "Thanks for your interest in partnering. We\u2019ll be in touch shortly."
+  },
+  "hero": {
+    "headline": "Exclusive tables for the fashionably late.",
+    "subtext": "Missed your reservation window? We turn last-minute availability into VIP access at the city\u2019s most coveted rooms.",
+    "cta_text": "Join the waitlist",
+    "cta_link": "#waitlist",
+    "image": "/assets/img/hero.jpg"
+  },
+  "faq": {
+    "items": [
+      {
+        "q": "Is this free?",
+        "a": "During beta, yes. We\u2019re measuring demand and refining the experience."
+      },
+      {
+        "q": "Do I need an app?",
+        "a": "No app yet \u2014 access links will be emailed during beta."
+      },
+      {
+        "q": "Which cities?",
+        "a": "We\u2019ll open cities in waves based on waitlist density."
+      },
+      {
+        "q": "Restaurant partnerships?",
+        "a": "We work directly with venues and late-seat opportunities; details at launch."
+      }
+    ]
+  },
+  "about": {
+    "title": "How Last Table works",
+    "steps": [
+      "Tell us your vibe & window",
+      "We scan hidden availability",
+      "Arrive like a regular"
+    ]
+  },
+  "footer": {
+    "email": "hello@lasttable.vip",
+    "copyright": "Last Table"
+  },
+  "cities": {
+    "cities": [
+      "New York",
+      "Los Angeles",
+      "Chicago",
+      "Miami",
+      "Las Vegas",
+      "San Francisco",
+      "Austin",
+      "Nashville",
+      "Cincinnati",
+      "Columbus",
+      "London",
+      "Paris",
+      "Montreal",
+      "Toronto"
+    ]
+  },
+  "changelog": {
+    "entries": [
+      {
+        "date": "2025-10-29",
+        "title": "Initial public MVP",
+        "notes": "Hero image, waitlist, FAQ, CMS, partners form."
+      },
+      {
+        "date": "2025-10-29",
+        "title": "Press kit & city selector",
+        "notes": "Press kit page, logo pack, city rail + select."
+      },
+      {
+        "date": "2025-10-29",
+        "title": "Partner portal stub",
+        "notes": "Identity-gated dashboard shell."
+      }
+    ]
+  }
+}

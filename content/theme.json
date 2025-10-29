@@ -1,0 +1,18 @@
+{
+  "colors": {
+    "background": "#0b0b0d",
+    "text": "#F7F4EE",
+    "primary": "#F2E2C4",
+    "accent": "#D4B483",
+    "muted": "#1a1a1d",
+    "border": "rgba(255,255,255,.10)"
+  },
+  "fonts": {
+    "heading": "Playfair Display, Georgia, serif",
+    "body": "Inter, system-ui, Segoe UI, Roboto, sans-serif"
+  },
+  "radius": {
+    "card": 24,
+    "button": 9999
+  }
+}

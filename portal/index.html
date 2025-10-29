@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Partner Portal — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>body{background:#0b0b0d;color:#F7F4EE}</style>
+</head>
+<body>
+  <header class="border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="flex items-center gap-3"><img src="/assets/logo/lasttable.svg" class="h-8" alt="Last Table"/></a>
+      <nav class="text-sm">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link ml-6" href="/partners.html">Partners</a>
+        <a class="nav-link ml-6" href="/portal/index.html">Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-10" id="app">
+    <div id="gate" class="glass p-6 rounded-3xl border text-center">
+      <h1 class="display text-3xl font-semibold">Partner Portal</h1>
+      <p class="opacity-80 mt-2">Log in to manage late windows and review requests.</p>
+      <button id="loginBtn" class="btn-primary mt-6">Log in</button>
+    </div>
+
+    <div id="dash" class="hidden">
+      <div class="flex items-center justify-between">
+        <h2 class="display text-3xl font-semibold">Dashboard</h2>
+        <button id="logoutBtn" class="btn-primary">Log out</button>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 mt-8">
+        <div class="glass p-6 rounded-3xl border">
+          <h3 class="font-semibold">Open Requests</h3>
+          <ul class="mt-3 space-y-2 text-sm opacity-90" id="requests">
+            <li>No requests yet (stub).</li>
+          </ul>
+        </div>
+        <div class="glass p-6 rounded-3xl border">
+          <h3 class="font-semibold">Your Late Windows</h3>
+          <ul class="mt-3 space-y-2 text-sm opacity-90">
+            <li>Tonight — 8–9 PM</li>
+            <li>Fri — 9–10 PM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-white/10 py-10">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="/assets/favicon.svg" class="h-6 w-6" alt="LT icon">
+        <span class="text-sm opacity-80">© <span id="year"></span> Last Table</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const id = window.netlifyIdentity;
+  const gate = document.getElementById('gate');
+  const dash = document.getElementById('dash');
+  const loginBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  function updateUI(user){
+    if(user){ gate.classList.add('hidden'); dash.classList.remove('hidden'); }
+    else { dash.classList.add('hidden'); gate.classList.remove('hidden'); }
+  }
+  if(id){
+    id.on('init', updateUI);
+    id.on('login', updateUI);
+    id.on('logout', updateUI);
+    loginBtn.addEventListener('click', ()=> id.open('login'));
+    logoutBtn.addEventListener('click', ()=> id.logout());
+  }
+  </script>
+  <script src="/assets/js/settings.js"></script>
+  <script>
+  // Enforce roles via Identity: user.app_metadata.roles OR user.user_metadata.role
+  function getRole(user){
+    try{
+      const am = user && user.app_metadata && user.app_metadata.roles;
+      if (Array.isArray(am) && am.length) return am[0];
+      const um = user && user.user_metadata && (user.user_metadata.role || user.user_metadata.roles);
+      if (typeof um === 'string') return um;
+      if (Array.isArray(um) && um.length) return um[0];
+    }catch(e){}
+    return null;
+  }
+  function gateByRole(user){
+    const role = getRole(user);
+    const dash = document.getElementById('dash');
+    const gate = document.getElementById('gate');
+    if(role === 'partner' || role === 'staff'){ dash.classList.remove('hidden'); gate.classList.add('hidden'); }
+    else {
+      dash.classList.add('hidden'); gate.classList.remove('hidden');
+      document.querySelector('#gate p').textContent = 'Access restricted. Request partner/staff access.';
+    }
+  }
+  const id = window.netlifyIdentity;
+  if(id){
+    id.on('init', gateByRole);
+    id.on('login', gateByRole);
+    id.on('logout', ()=>{ gateByRole(null); });
+  }
+  </script>
+</body>
+</html>
+</html>

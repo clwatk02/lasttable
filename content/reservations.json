@@ -1,0 +1,17 @@
+{
+  "reservations": [
+    {
+      "id": "res-001",
+      "restaurant_id": "lt-nyc-balthazar",
+      "date": "2025-12-01",
+      "time": "20:00",
+      "party": 2,
+      "under_name": "Chris",
+      "status": "available",
+      "confirmation": "ABC123",
+      "transfer_notes": "Call host to update name; 2 hours before seating.",
+      "expires_at": "2025-12-01T19:00:00Z",
+      "token": "tok-eyxsn1xwlo"
+    }
+  ]
+}

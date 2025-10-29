@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Press — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <style>body{background:#0b0b0d;color:#F7F4EE}</style>
+  <link rel="canonical" href="/">
+  <meta property="og:url" content="/">
+</head>
+<body>
+  <header class="border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="flex items-center gap-3"><img src="/assets/logo/lasttable.svg" class="h-8" alt="Last Table"/></a>
+      <nav class="text-sm">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link ml-6" href="/press.html">Press</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="display text-4xl font-semibold">Press Kit</h1>
+    <p class="opacity-80 mt-3 max-w-2xl">Logos, colors, and a short brand description. For media inquiries, contact <a class="underline" href="mailto:hello@lasttable.vip">hello@lasttable.vip</a>.</p>
+
+    <div class="grid md:grid-cols-2 gap-8 mt-10">
+      <div class="glass p-6 rounded-3xl border">
+        <h2 class="text-xl font-semibold">Logo Pack</h2>
+        <p class="opacity-80 mt-1 text-sm">SVG + PNG + favicon + OG image</p>
+        <div class="mt-4 flex items-center gap-4">
+          <img src="/assets/logo/lasttable.png" class="h-16 rounded" alt="Logo sample">
+          <a class="btn-primary" href="/assets/brand/lasttable-logo-pack.zip" download>Download</a>
+        </div>
+      </div>
+      <div class="glass p-6 rounded-3xl border">
+        <h2 class="text-xl font-semibold">Colors</h2>
+        <div class="mt-4 grid grid-cols-3 gap-3 text-sm">
+          <div class="p-3 rounded-xl border" style="background:#0b0b0d">#0b0b0d<br/>Black</div>
+          <div class="p-3 rounded-xl border text-black" style="background:#F2E2C4">#F2E2C4<br/>Champagne</div>
+          <div class="p-3 rounded-xl border text-black" style="background:#D4B483">#D4B483<br/>Gold</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass p-6 rounded-3xl border mt-8">
+      <h2 class="text-xl font-semibold">About Last Table</h2>
+      <p class="opacity-80 mt-2">Last Table turns late arrivals into premium access at coveted rooms by matching real-time openings with curated guests. Tagline: “Exclusive tables for the fashionably late.”</p>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/10 py-10">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="/assets/favicon.svg" class="h-6 w-6" alt="LT icon">
+        <span class="text-sm opacity-80">© <span id="year"></span> Last Table</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+  <script src="/assets/js/settings.js"></script>
+</body>
+</html>

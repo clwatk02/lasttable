@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>How-To — Last Table (Admin)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body class="bg-blacklux text-offwhite">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div id="gate" class="glass p-6 rounded-3xl border text-center">
+      <h1 class="display text-3xl font-semibold">Admin How‑To</h1>
+      <p class="opacity-80">Login required.</p>
+      <button id="login" class="btn-primary mt-4">Log in</button>
+    </div>
+    <div id="panel" class="hidden space-y-8">
+      <div class="flex items-center justify-between">
+        <h2 class="display text-3xl font-semibold">Setup Checklist</h2>
+        <a class="btn-primary" href="/admin" target="_blank">Open Admin</a>
+      </div>
+      <div id="checklist" class="grid md:grid-cols-2 gap-4"></div>
+
+      <div class="glass p-6 rounded-3xl border">
+        <h3 class="text-xl font-semibold">1) EmailJS — Auto Emails</h3>
+        <p class="opacity-80 text-sm">Send confirmations to users and notifications to you on every form.</p>
+        <ol class="list-decimal pl-6 mt-3 space-y-1 opacity-90 text-sm">
+          <li>Create an account at <a class="underline" href="https://www.emailjs.com" target="_blank">EmailJS</a>.</li>
+          <li>Copy your <strong>Public Key</strong> and create a <strong>Service</strong>.</li>
+          <li>Create two templates:
+            <ul class="list-disc pl-5 mt-1">
+              <li><em>Admin template ID</em> — you receive submissions.</li>
+              <li><em>User template ID</em> — the user gets confirmation.</li>
+            </ul>
+          </li>
+          <li>Paste keys in <strong>Admin → Settings</strong>:
+            <code class="block mt-2 glass p-3 rounded">emailjs_public_key, emailjs_service_id, emailjs_template_id_admin, emailjs_template_id_user</code>
+          </li>
+        </ol>
+        <details class="mt-4">
+          <summary class="cursor-pointer underline">Template Variables (what we send)</summary>
+          <pre class="glass p-4 rounded mt-3 text-xs overflow-x-auto">{
+  "kind": "waitlist | partner | press | interest | claim | late_form",
+  "ts": "ISO timestamp",
+  "email": "user email if present",
+  "name": "user name if present",
+  "city": "...",
+  "restaurant": "...",
+  "party": "...",
+  "date": "...",
+  "time": "...",
+  "restaurant_id": "...",
+  "window": "...",
+  "notes": "...",
+  "reservation_id": "...",
+  "datetime": "..."
+}</pre>
+        </details>
+      </div>
+
+      <div class="glass p-6 rounded-3xl border">
+        <h3 class="text-xl font-semibold">2) Stripe — Pay‑to‑Claim</h3>
+        <p class="opacity-80 text-sm">Collect a fee before unlocks the claim form.</p>
+        <ol class="list-decimal pl-6 mt-3 space-y-1 opacity-90 text-sm">
+          <li>Create a <strong>Payment Link</strong> in your Stripe Dashboard for the claim fee.</li>
+          <li>In the link settings, set the <strong>Return URL</strong> to your site (e.g. <code>https://YOUR-SITE.netlify.app/claim.html</code>).</li>
+          <li>Optionally add these query params to the return URL to auto‑unlock:
+            <code class="block mt-2 glass p-3 rounded">?id=&lt;RESERVATION_ID&gt;&amp;token=&lt;TOKEN&gt;&amp;paid=1</code>
+          </li>
+          <li>In <strong>Admin → Settings</strong> set:
+            <code class="block mt-2 glass p-3 rounded">require_payment_to_claim = true<br>stripe_payment_link = https://buy.stripe.com/xxxx<br>claim_success_param_name = paid<br>claim_success_param_value = 1</code>
+          </li>
+        </ol>
+      </div>
+
+      <div class="glass p-6 rounded-3xl border">
+        <h3 class="text-xl font-semibold">3) Mapbox — Geocoding</h3>
+        <p class="opacity-80 text-sm">Optional. For converting addresses to coordinates in Admin Tools.</p>
+        <ol class="list-decimal pl-6 mt-3 space-y-1 opacity-90 text-sm">
+          <li>Create a token at <a class="underline" href="https://www.mapbox.com/" target="_blank">Mapbox</a>.</li>
+          <li>Paste it in <strong>Admin → Settings</strong> as <code>mapbox_token</code>.</li>
+          <li>Go to <strong>Admin Tools</strong> and use the Geocode widget.</li>
+        </ol>
+      </div>
+
+      <div class="glass p-6 rounded-3xl border">
+        <h3 class="text-xl font-semibold">4) Netlify Identity — Access Control</h3>
+        <ol class="list-decimal pl-6 mt-3 space-y-1 opacity-90 text-sm">
+          <li>Netlify → <strong>Identity</strong> → Enable, Registration = <strong>Invite only</strong>.</li>
+          <li>Invite <code id="adminEmail">onzpoe@gmail.com</code> (edit in Admin → Settings).</li>
+          <li>For partner portal roles, set user metadata roles: <code>partner</code> or <code>staff</code>.</li>
+        </ol>
+      </div>
+
+      <div class="glass p-6 rounded-3xl border">
+        <h3 class="text-xl font-semibold">5) Workflow — End‑to‑End</h3>
+        <ol class="list-decimal pl-6 mt-3 space-y-1 opacity-90 text-sm">
+          <li><strong>Waitlist</strong> builds demand by city.</li>
+          <li><strong>Restaurants</strong> added in Admin; use Admin Tools to geocode.</li>
+          <li><strong>Reservations</strong> held months in advance, statuses managed in CMS.</li>
+          <li><strong>Claims</strong> via tokenized links (optionally paygated).</li>
+          <li><strong>Fulfillment</strong> after name transfer; export ICS/CSV for ops.</li>
+        </ol>
+        <div class="mt-4 flex flex-wrap gap-2 text-sm">
+          <a class="btn-primary" href="/dashboard.html">Dashboard</a>
+          <a class="btn-primary" href="/calendar.html">Calendar</a>
+          <a class="btn-primary" href="/inventory.html">Inventory</a>
+          <a class="btn-primary" href="/admin-tools.html">Admin Tools</a>
+          <a class="btn-primary" href="/partners.html">Partner Intake</a>
+          <a class="btn-primary" href="/partner-self-serve.html">Partner Self‑Serve</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const id = window.netlifyIdentity;
+    const gate=document.getElementById('gate'), panel=document.getElementById('panel');
+    function upd(u){ if(u){ gate.classList.add('hidden'); panel.classList.remove('hidden'); boot(); } else { panel.classList.add('hidden'); gate.classList.remove('hidden'); } }
+    if(id){ id.on('init', upd); id.on('login', upd); id.on('logout', ()=>upd(null)); }
+    document.getElementById('login').onclick=()=>id && id.open('login');
+
+    async function boot(){
+      const r = await fetch('/content/settings.json',{cache:'no-store'});
+      if(!r.ok) return;
+      const s = await r.json();
+      document.getElementById('adminEmail').textContent = s.admin_email || '—';
+      const items = [
+        {label:'Contact email set', ok: !!s.contact_email},
+        {label:'Form actions configured (waitlist/partner/press/interest/claim)', ok: !!s.waitlist_form_action && !!s.partner_form_action},
+        {label:'EmailJS keys present', ok: !!s.emailjs_public_key && !!s.emailjs_service_id},
+        {label:'Stripe Pay link (if paygate on)', ok: !s.require_payment_to_claim || !!s.stripe_payment_link},
+        {label:'Audit webhook (optional)', ok: !!s.audit_webhook_url},
+        {label:'Mapbox token (optional)', ok: !!s.mapbox_token},
+        {label:'Analytics domain (optional)', ok: !!s.analytics_domain},
+      ];
+      const wrap = document.getElementById('checklist');
+      wrap.innerHTML = items.map(x=>'<div class="glass p-4 rounded-2xl border flex items-center gap-3">'+(x.ok?'<span>✅</span>':'<span>⬜</span>')+'<span>'+x.label+'</span></div>').join('');
+    }
+  </script>
+  <script src="/assets/js/settings.js"></script>
+</body>
+</html>

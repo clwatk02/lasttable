@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "q": "Is this free?",
+      "a": "During beta, yes. We\u2019re measuring demand and refining the experience."
+    },
+    {
+      "q": "Do I need an app?",
+      "a": "No app yet \u2014 access links will be emailed during beta."
+    },
+    {
+      "q": "Which cities?",
+      "a": "We\u2019ll open cities in waves based on waitlist density."
+    },
+    {
+      "q": "Restaurant partnerships?",
+      "a": "We work directly with venues and late-seat opportunities; details at launch."
+    }
+  ]
+}

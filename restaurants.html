@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurants — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>#map{height:460px;border-radius:24px;border:1px solid rgba(255,255,255,.1);overflow:hidden}</style>
+</head>
+<body class="bg-blacklux text-offwhite">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <h1 class="display text-4xl font-semibold">Explore Restaurants</h1>
+    <div class="grid md:grid-cols-3 gap-6 mt-6">
+      <div class="md:col-span-2">
+        <div id="map"></div>
+        <div class="mt-4 flex gap-2">
+          <input id="q" placeholder="Search name, tags…" class="w-full px-4 py-3 rounded-xl text-black outline-none"/>
+          <select id="cityFilter" class="px-3 py-3 rounded-xl text-black outline-none"><option value="">All cities</option></select>
+          <button id="nearMe" class="btn-primary">Near me</button>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xl font-semibold mb-3">Results</h2>
+        <div id="results"></div>
+        <hr class="hr-faint my-6"/>
+        <h3 class="text-lg font-semibold">Request a reservation</h3>
+        <form id="interest" class="space-y-3 mt-2" action="https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM" method="POST" data-apps-script="">
+          <input type="hidden" name="_subject" value="Last Table — Reservation Interest">
+          <input type="hidden" name="_captcha" value="false">
+          <div>
+            <label class="block text-sm mb-1">Restaurant</label>
+            <input name="restaurant" id="restaurantField" class="w-full px-4 py-3 rounded-xl text-black outline-none"/>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div><label class="block text-sm mb-1">Date</label><input type="date" name="date" class="w-full px-4 py-3 rounded-xl text-black outline-none"/></div>
+            <div><label class="block text-sm mb-1">Time</label><input type="time" name="time" class="w-full px-4 py-3 rounded-xl text-black outline-none"/></div>
+          </div>
+          <div><label class="block text-sm mb-1">Party size</label><input type="number" name="party" min="1" max="12" class="w-full px-4 py-3 rounded-xl text-black outline-none"/></div>
+          <div><label class="block text-sm mb-1">Your email</label><input type="email" name="email" required class="w-full px-4 py-3 rounded-xl text-black outline-none"/></div>
+          <button class="btn-primary w-full" type="submit">Submit interest</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="/assets/js/map.js"></script>
+  <script>LTMap();</script>
+  <script src="/assets/js/forms.js"></script>
+  <script src="/assets/js/settings.js"></script>
+
+  <div id="locPrompt" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 glass p-4 rounded-2xl border shadow max-w-xl w-[92%] hidden">
+    <div class="flex items-center justify-between gap-3">
+      <div class="text-sm opacity-90">Allow location to show restaurants near you?</div>
+      <div class="flex gap-2">
+        <button id="locAllow" class="btn-primary">Allow</button>
+        <button id="locDeny" class="btn-primary">No thanks</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    (function(){
+      const PREF_KEY = 'lt_location_pref'; // 'allow' | 'deny'
+      function showPrompt(show){
+        const p = document.getElementById('locPrompt');
+        if(!p) return;
+        p.classList[show?'remove':'add']('hidden');
+      }
+      function tryGeo(){
+        const nearBtn = document.getElementById('nearMe');
+        if(nearBtn){ nearBtn.click(); }
+      }
+      document.addEventListener('DOMContentLoaded', ()=>{
+        const pref = localStorage.getItem(PREF_KEY);
+        if(pref === 'allow'){
+          // auto geo without prompting
+          tryGeo();
+        } else if (pref === 'deny'){
+          // never prompt; user can click Near me manually anytime
+        } else {
+          // first visit, show soft prompt
+          showPrompt(true);
+        }
+        const allow = document.getElementById('locAllow');
+        const deny  = document.getElementById('locDeny');
+        allow && allow.addEventListener('click', ()=>{
+          localStorage.setItem(PREF_KEY,'allow');
+          showPrompt(false);
+          tryGeo();
+        });
+        deny && deny.addEventListener('click', ()=>{
+          localStorage.setItem(PREF_KEY,'deny');
+          showPrompt(false);
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

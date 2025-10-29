@@ -1,0 +1,23 @@
+{
+  "admin_email": "onzpoe@gmail.com",
+  "contact_email": "hello@lasttable.vip",
+  "site_url": "https://lasttable.vip",
+  "analytics_domain": "lasttable.vip",
+  "turnstile_sitekey": "",
+  "apps_script_url": "",
+  "waitlist_form_action": "https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM",
+  "partner_form_action": "https://formsubmit.co/YOUR_EMAIL@EXAMPLE.COM",
+  "show_portal": true,
+  "emailjs_public_key": "",
+  "emailjs_service_id": "",
+  "emailjs_template_id_admin": "",
+  "emailjs_template_id_user": "",
+  "mapbox_token": "",
+  "audit_webhook_url": "",
+  "stripe_public_key": "",
+  "stripe_price_id": "",
+  "require_payment_to_claim": false,
+  "stripe_payment_link": "",
+  "claim_success_param_name": "paid",
+  "claim_success_param_value": "1"
+}

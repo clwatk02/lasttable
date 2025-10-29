@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cities — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+</head>
+<body>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="display text-4xl font-semibold">Cities</h1>
+    <p class="opacity-80 mt-2">We’ll open cities based on waitlist density. Pick yours to get priority.</p>
+    <div id="cities" class="grid md:grid-cols-3 gap-4 mt-6"></div>
+  </div>
+  <script>
+    fetch('/content/cities.json').then(r=>r.json()).then(d=>{
+      const wrap = document.getElementById('cities');
+      (d.cities||[]).forEach(name=>{
+        const a = document.createElement('a');
+        a.className='glass p-5 rounded-3xl border block hover:opacity-100';
+        a.href = '/city.html?name='+encodeURIComponent(name);
+        a.textContent = name;
+        a.addEventListener('click', ()=>{
+          const sel = document.getElementById('city-select');
+          if(sel){ sel.value = name; }
+        });
+        wrap.appendChild(a);
+      });
+    });
+  </script>
+  <script src="/assets/js/settings.js"></script>
+</body>
+</html>

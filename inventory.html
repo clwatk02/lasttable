@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventory — Last Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/custom.css"/>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body class="bg-blacklux text-offwhite">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <div id="gate" class="glass p-6 rounded-3xl border text-center">
+      <h1 class="display text-3xl font-semibold">Reservation Inventory</h1>
+      <p class="opacity-80">Log in to manage your held reservations.</p>
+      <button id="login" class="btn-primary mt-4">Log in</button>
+    </div>
+
+    <div id="panel" class="hidden">
+      <div class="flex items-center justify-between">
+        <h2 class="display text-3xl font-semibold">Inventory</h2>
+        <div class="flex items-center gap-2">
+          <a class="btn-primary" href="/admin/#/collections/reservations" target="_blank">Open CMS</a>
+          <button id="logout" class="btn-primary">Log out</button>
+        </div>
+      </div>
+      <div class="mt-4 grid md:grid-cols-4 gap-3">
+        <input id="invSearch" placeholder="Search name/confirm/restaurant…" class="px-4 py-3 rounded-xl text-black outline-none"/>
+        <select id="invStatus" class="px-4 py-3 rounded-xl text-black outline-none">
+          <option value="">All status</option>
+          <option>available</option>
+          <option>claimed</option>
+          <option>transferred</option>
+          <option>fulfilled</option>
+          <option>cancelled</option>
+        </select>
+        <select id="invCity" class="px-4 py-3 rounded-xl text-black outline-none"><option value="">All cities</option></select>
+      </div>
+
+      <div class="mt-6 overflow-auto">
+        <table class="min-w-full text-sm">
+          <thead class="text-left opacity-70">
+            <tr><th class="px-3 py-2">Restaurant</th><th class="px-3 py-2">Date/Time</th><th class="px-3 py-2">Party</th><th class="px-3 py-2">Status</th><th class="px-3 py-2">Conf</th><th class="px-3 py-2">Actions</th><th class="px-3 py-2">Claim Link</th><th class="px-3 py-2">Paygated Link</th><th class="px-3 py-2">Stripe Link</th></tr>
+          </thead>
+          <tbody id="invRows"></tbody>
+        </table>
+      </div>
+      <p class="opacity-70 text-xs mt-4">To change reservation names with venues, follow your transfer notes and mark status in CMS.</p>
+    </div>
+  </div>
+  <script src="/assets/js/map.js"></script>
+  <script>
+    const id = window.netlifyIdentity;
+    const gate=document.getElementById('gate'), panel=document.getElementById('panel');
+    function upd(u){ if(u){ gate.classList.add('hidden'); panel.classList.remove('hidden'); window.LTInventory && LTInventory(); } else { panel.classList.add('hidden'); gate.classList.remove('hidden'); } }
+    if(id){ id.on('init', upd); id.on('login', upd); id.on('logout', ()=>upd(null)); }
+    document.getElementById('login').onclick=()=>id && id.open('login');
+    document.getElementById('logout').onclick=()=>id && id.logout();
+  </script>
+  <script src="/assets/js/settings.js"></script>
+
+  <div id="stripeModal" class="fixed inset-0 hidden items-center justify-center z-50">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative glass p-6 rounded-3xl border max-w-xl w-[90%]">
+      <h3 class="text-xl font-semibold">Generated Stripe Link</h3>
+      <p class="text-sm opacity-80 mt-1">This link includes reservation ID, token, and a return URL that unlocks the claim page.</p>
+      <textarea id="stripeURL" class="w-full mt-3 p-3 rounded-xl text-black text-sm" rows="3" readonly></textarea>
+      <div class="mt-4" id="qrWrap"><div id="qrCode" class="bg-white p-2 rounded inline-block"></div></div><div class="mt-4 flex gap-3">
+        <button id="copyStripe" class="btn-primary">Copy</button>
+        <a id="openStripe" class="btn-primary" target="_blank">Open</a>
+        <button id="closeStripe" class="btn-primary">Close</button>
+      </div>
+      <p class="text-xs opacity-70 mt-3">Tip: Update your Stripe Payment Link and success param in Admin → Settings. Changes apply instantly.</p>
+    </div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</body>
+</html>

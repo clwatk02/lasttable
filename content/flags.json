@@ -1,0 +1,7 @@
+{
+  "maintenance_mode": false,
+  "announcement_enabled": true,
+  "announcement_text": "Now accepting partner applications for beta launch.",
+  "beta_code_required": false,
+  "beta_code_value": ""
+}

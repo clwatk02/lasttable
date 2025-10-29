@@ -1,0 +1,37 @@
+{
+  "restaurants": [
+    {
+      "id": "lt-nyc-balthazar",
+      "name": "Balthazar",
+      "city": "New York",
+      "address": "80 Spring St, New York, NY",
+      "lat": 40.7229,
+      "lng": -73.998,
+      "tags": [
+        "French",
+        "Classic",
+        "Exclusive"
+      ],
+      "phone": "+1-212-965-1414",
+      "url": "https://example.com",
+      "notes": "Example listing. Replace via admin.",
+      "exclusivity": "invite-only"
+    },
+    {
+      "id": "lt-cin-lasalle",
+      "name": "La Salle Kitchen",
+      "city": "Cincinnati",
+      "address": "123 Sample Ave, Cincinnati, OH",
+      "lat": 39.1031,
+      "lng": -84.512,
+      "tags": [
+        "Modern",
+        "Chef-driven"
+      ],
+      "phone": "+1-513-000-0000",
+      "url": "https://example.com",
+      "notes": "Sample placeholder.",
+      "exclusivity": "preferred-partner"
+    }
+  ]
+}
