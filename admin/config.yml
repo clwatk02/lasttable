@@ -13,173 +13,213 @@ publish_mode: editorial_workflow
 collections:
   - name: "hero"
     label: "Hero"
-    file: "content/hero.json"
-    format: "json"
-    fields:
-      - { label: "Headline", name: "headline", widget: "string" }
-      - { label: "Subtext", name: "subtext", widget: "text" }
-      - { label: "CTA Text", name: "cta_text", widget: "string" }
-      - { label: "CTA Link", name: "cta_link", widget: "string", default: "#waitlist" }
-      - { label: "Image", name: "image", widget: "image" }
+    files:
+      - file: "content/hero.json"
+        name: "hero"
+        label: "Hero"
+        format: "json"
+        fields:
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Subtext", name: "subtext", widget: "text" }
+          - { label: "CTA Text", name: "cta_text", widget: "string" }
+          - { label: "CTA Link", name: "cta_link", widget: "string", default: "#waitlist" }
+          - { label: "Image", name: "image", widget: "image" }
 
   - name: "faq"
     label: "FAQ"
-    file: "content/faq.json"
-    format: "json"
-    fields:
-      - label: "Items"
-        name: "items"
-        widget: "list"
+    files:
+      - file: "content/faq.json"
+        name: "faq"
+        label: "FAQ"
+        format: "json"
         fields:
-          - { label: "Question", name: "q", widget: "string" }
-          - { label: "Answer", name: "a", widget: "text" }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "q", widget: "string" }
+              - { label: "Answer", name: "a", widget: "text" }
 
   - name: "about"
     label: "About"
-    file: "content/about.json"
-    format: "json"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - label: "Steps"
-        name: "steps"
-        widget: "list"
-        field: { label: "Step", name: "step", widget: "string" }
+    files:
+      - file: "content/about.json"
+        name: "about"
+        label: "About"
+        format: "json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Step", name: "step", widget: "string" }
 
   - name: "footer"
     label: "Footer"
-    file: "content/footer.json"
-    format: "json"
-    fields:
-      - { label: "Email", name: "email", widget: "string" }
-      - { label: "Copyright Name", name: "copyright", widget: "string" }
+    files:
+      - file: "content/footer.json"
+        name: "footer"
+        label: "Footer"
+        format: "json"
+        fields:
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Copyright Name", name: "copyright", widget: "string" }
 
   - name: "cities"
     label: "Cities"
-    file: "content/cities.json"
-    format: "json"
-    fields:
-      - label: "Cities"
+    files:
+      - file: "content/cities.json"
         name: "cities"
-        widget: "list"
-        field: { label: "City", name: "city", widget: "string" }
+        label: "Cities"
+        format: "json"
+        fields:
+          - label: "Cities"
+            name: "cities"
+            widget: "list"
+            fields:
+              - { label: "City", name: "city", widget: "string" }
 
   - name: "changelog"
     label: "Changelog"
-    file: "content/changelog.json"
-    format: "json"
-    fields:
-      - label: "Entries"
-        name: "entries"
-        widget: "list"
+    files:
+      - file: "content/changelog.json"
+        name: "changelog"
+        label: "Changelog"
+        format: "json"
         fields:
-          - { label: "Date", name: "date", widget: "string" }
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Notes", name: "notes", widget: "text" }
+          - label: "Entries"
+            name: "entries"
+            widget: "list"
+            fields:
+              - { label: "Date", name: "date", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Notes", name: "notes", widget: "text" }
 
   - name: "settings"
     label: "Settings"
-    file: "content/settings.json"
-    format: "json"
-    fields:
-      - { label: "Admin Email", name: "admin_email", widget: "string" }
-      - { label: "Contact Email", name: "contact_email", widget: "string" }
-      - { label: "Site URL (canonical)", name: "site_url", widget: "string", required: false }
-      - { label: "Analytics Domain (Plausible)", name: "analytics_domain", widget: "string", required: false }
-      - { label: "Turnstile Site Key", name: "turnstile_sitekey", widget: "string", required: false }
-      - { label: "Google Apps Script URL (Sheets Mirror)", name: "apps_script_url", widget: "string", required: false }
-      - { label: "Waitlist Form Action", name: "waitlist_form_action", widget: "string" }
-      - { label: "Partner Form Action", name: "partner_form_action", widget: "string" }
-      - { label: "Show Partner Portal Link", name: "show_portal", widget: "boolean", default: true }
+    files:
+      - file: "content/settings.json"
+        name: "settings"
+        label: "Settings"
+        format: "json"
+        fields:
+          - { label: "Admin Email", name: "admin_email", widget: "string" }
+          - { label: "Contact Email", name: "contact_email", widget: "string" }
+          - { label: "Site URL (canonical)", name: "site_url", widget: "string", required: false }
+          - { label: "Analytics Domain (Plausible)", name: "analytics_domain", widget: "string", required: false }
+          - { label: "Turnstile Site Key", name: "turnstile_sitekey", widget: "string", required: false }
+          - { label: "Google Apps Script URL (Sheets Mirror)", name: "apps_script_url", widget: "string", required: false }
+          - { label: "Waitlist Form Action", name: "waitlist_form_action", widget: "string" }
+          - { label: "Partner Form Action", name: "partner_form_action", widget: "string" }
+          - { label: "Show Partner Portal Link", name: "show_portal", widget: "boolean", default: true }
 
   - name: "theme"
     label: "Theme"
-    file: "content/theme.json"
-    format: "json"
-    fields:
-      - label: "Colors"
-        name: "colors"
-        widget: "object"
+    files:
+      - file: "content/theme.json"
+        name: "theme"
+        label: "Theme"
+        format: "json"
         fields:
-          - {label:"Background", name:"background", widget:"string"}
-          - {label:"Text", name:"text", widget:"string"}
-          - {label:"Primary", name:"primary", widget:"string"}
-          - {label:"Accent", name:"accent", widget:"string"}
-          - {label:"Muted", name:"muted", widget:"string"}
-          - {label:"Border", name:"border", widget:"string"}
-      - label: "Fonts"
-        name: "fonts"
-        widget: "object"
-        fields:
-          - {label:"Heading", name:"heading", widget:"string"}
-          - {label:"Body", name:"body", widget:"string"}
-      - label: "Radius"
-        name: "radius"
-        widget: "object"
-        fields:
-          - {label:"Card", name:"card", widget:"number"}
-          - {label:"Button", name:"button", widget:"number"}
+          - label: "Colors"
+            name: "colors"
+            widget: "object"
+            fields:
+              - { label: "Background", name: "background", widget: "string", default: "#0b0b0d" }
+              - { label: "Text", name: "text", widget: "string", default: "#F7F4EE" }
+              - { label: "Primary", name: "primary", widget: "string", default: "#F2E2C4" }
+              - { label: "Accent", name: "accent", widget: "string", default: "#D4B483" }
+              - { label: "Muted", name: "muted", widget: "string", default: "rgba(255,255,255,0.06)" }
+              - { label: "Border", name: "border", widget: "string", default: "rgba(255,255,255,0.10)" }
+          - label: "Fonts"
+            name: "fonts"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string", default: "Playfair Display, Georgia, serif" }
+              - { label: "Body", name: "body", widget: "string", default: "Inter, system-ui, Segoe UI, Roboto, sans-serif" }
+          - label: "Radius"
+            name: "radius"
+            widget: "object"
+            fields:
+              - { label: "Card", name: "card", widget: "number", default: 24 }
+              - { label: "Button", name: "button", widget: "number", default: 9999 }
 
   - name: "flags"
     label: "Feature Flags"
-    file: "content/flags.json"
-    format: "json"
-    fields:
-      - {label:"Maintenance Mode", name:"maintenance_mode", widget:"boolean", default:false}
-      - {label:"Announcement Enabled", name:"announcement_enabled", widget:"boolean", default:true}
-      - {label:"Announcement Text", name:"announcement_text", widget:"string", required:false}
-      - {label:"Beta Code Required", name:"beta_code_required", widget:"boolean", default:false}
-      - {label:"Beta Code Value", name:"beta_code_value", widget:"string", required:false}
+    files:
+      - file: "content/flags.json"
+        name: "flags"
+        label: "Feature Flags"
+        format: "json"
+        fields:
+          - { label: "Maintenance Mode", name: "maintenance_mode", widget: "boolean", default: false }
+          - { label: "Announcement Enabled", name: "announcement_enabled", widget: "boolean", default: true }
+          - { label: "Announcement Text", name: "announcement_text", widget: "string", required: false }
+          - { label: "Beta Code Required", name: "beta_code_required", widget: "boolean", default: false }
+          - { label: "Beta Code Value", name: "beta_code_value", widget: "string", required: false }
 
   - name: "emails"
     label: "Email Templates"
-    file: "content/emails.json"
-    format: "json"
-    fields:
-      - {label:"Waitlist Subject", name:"waitlist_subject", widget:"string"}
-      - {label:"Waitlist Body (text)", name:"waitlist_body_text", widget:"text"}
-      - {label:"Partner Subject", name:"partner_subject", widget:"string"}
-      - {label:"Partner Body (text)", name:"partner_body_text", widget:"text"}
+    files:
+      - file: "content/emails.json"
+        name: "emails"
+        label: "Email Templates"
+        format: "json"
+        fields:
+          - { label: "Waitlist Subject", name: "waitlist_subject", widget: "string" }
+          - { label: "Waitlist Body (text)", name: "waitlist_body_text", widget: "text" }
+          - { label: "Partner Subject", name: "partner_subject", widget: "string" }
+          - { label: "Partner Body (text)", name: "partner_body_text", widget: "text" }
 
   - name: "restaurants"
     label: "Restaurants"
-    file: "content/restaurants.json"
-    format: "json"
-    fields:
-      - label: "Restaurants"
+    files:
+      - file: "content/restaurants.json"
         name: "restaurants"
-        widget: "list"
+        label: "Restaurants"
+        format: "json"
         fields:
-          - {label:"ID", name:"id", widget:"string"}
-          - {label:"Name", name:"name", widget:"string"}
-          - {label:"City", name:"city", widget:"string"}
-          - {label:"Address", name:"address", widget:"string"}
-          - {label:"Latitude", name:"lat", widget:"number"}
-          - {label:"Longitude", name:"lng", widget:"number"}
-          - {label:"Tags", name:"tags", widget:"list", field:{label:"Tag", name:"tag", widget:"string"}}
-          - {label:"Phone", name:"phone", widget:"string", required:false}
-          - {label:"Website URL", name:"url", widget:"string", required:false}
-          - {label:"Exclusivity", name:"exclusivity", widget:"select", options:["invite-only","preferred-partner","public"], default:"preferred-partner"}
-          - {label:"Notes", name:"notes", widget:"text", required:false}
+          - label: "Restaurants"
+            name: "restaurants"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "City", name: "city", widget: "string" }
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Latitude", name: "lat", widget: "number" }
+              - { label: "Longitude", name: "lng", widget: "number" }
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                fields:
+                  - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string", required: false }
+              - { label: "Website URL", name: "url", widget: "string", required: false }
+              - { label: "Exclusivity", name: "exclusivity", widget: "select", options: ["invite-only", "preferred-partner", "public"], default: "preferred-partner" }
+              - { label: "Notes", name: "notes", widget: "text", required: false }
 
   - name: "reservations"
     label: "Reservations"
-    file: "content/reservations.json"
-    format: "json"
-    fields:
-      - label: "Reservations"
+    files:
+      - file: "content/reservations.json"
         name: "reservations"
-        widget: "list"
+        label: "Reservations"
+        format: "json"
         fields:
-          - {label:"ID", name:"id", widget:"string"}
-          - {label:"Restaurant ID", name:"restaurant_id", widget:"string"}
-          - {label:"Date (YYYY-MM-DD)", name:"date", widget:"string"}
-          - {label:"Time (HH:mm)", name:"time", widget:"string"}
-          - {label:"Party Size", name:"party", widget:"number"}
-          - {label:"Under Name", name:"under_name", widget:"string"}
-          - {label:"Status", name:"status", widget:"select", options:["available","claimed","transferred","fulfilled","cancelled"], default:"available"}
-          - {label:"Confirmation", name:"confirmation", widget:"string", required:false}
-          - {label:"Transfer Notes", name:"transfer_notes", widget:"text", required:false}
-          - {label:"Expires At (ISO)", name:"expires_at", widget:"string", required:false}
-
-  # Add token field for claims
-  - name: "reservations" # duplicate collection block not needed; token already included visually via CMS UI per file
+          - label: "Reservations"
+            name: "reservations"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Restaurant ID", name: "restaurant_id", widget: "string" }
+              - { label: "Date (YYYY-MM-DD)", name: "date", widget: "string" }
+              - { label: "Time (HH:mm)", name: "time", widget: "string" }
+              - { label: "Party Size", name: "party", widget: "number" }
+              - { label: "Under Name", name: "under_name", widget: "string" }
+              - { label: "Status", name: "status", widget: "select", options: ["available", "claimed", "transferred", "fulfilled", "cancelled"], default: "available" }
+              - { label: "Confirmation", name: "confirmation", widget: "string", required: false }
+              - { label: "Transfer Notes", name: "transfer_notes", widget: "text", required: false }
+              - { label: "Expires At (ISO)", name: "expires_at", widget: "string", required: false }
+              - { label: "Claim Token", name: "token", widget: "string" }
