@@ -23,7 +23,7 @@
   </header>
 
   <!-- Netlify CMS mounts here -->
-  <div id="nc-root"></div>
+  <div id="nc-root"></div><div class="max-w-6xl mx-auto px-4 py-6" data-quick-launch><div class="grid md:grid-cols-3 gap-3"><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/#/collections/settings/entries/settings">Settings →</a><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/#/collections/hero/entries/hero">Hero →</a><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/#/collections/faq/entries/faq">FAQ →</a><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/#/collections/about/entries/about">About →</a><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/#/collections/footer/entries/footer">Footer →</a><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/#/collections/restaurants/entries/restaurants">Restaurants →</a><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/#/collections/reservations/entries/reservations">Reservations →</a><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/#/collections/emails/entries/emails">Emails →</a><span data-admin-only style="display:none"><span data-admin-only style="display:none"><a class="glass p-4 rounded-2xl border block" href="/admin/tools.html">Admin Tools →</a></span></div></div>
 
   <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
   <script>
@@ -53,5 +53,6 @@
     });
     CMS.registerPreviewTemplate('hero', HeroPreview);
   </script>
+  <script src="/assets/js/auth.js"></script>
 </body>
 </html>

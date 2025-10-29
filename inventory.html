@@ -19,7 +19,7 @@
       <div class="flex items-center justify-between">
         <h2 class="display text-3xl font-semibold">Inventory</h2>
         <div class="flex items-center gap-2">
-          <a class="btn-primary" href="/admin/#/collections/reservations" target="_blank">Open CMS</a>
+          <span data-admin-only style="display:none"><a class="btn-primary" href="/admin/#/collections/reservations" target="_blank">Open CMS</a>
           <button id="logout" class="btn-primary">Log out</button>
         </div>
       </div>
@@ -74,5 +74,6 @@
   </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="/assets/js/auth.js"></script>
 </body>
 </html>

@@ -66,7 +66,7 @@
         <a href="#how" class="nav-link">How it works</a>
         <a href="#faq" class="nav-link">FAQ</a><a href="/cities.html" class="nav-link">Cities</a><a href="/partners.html" class="nav-link">Partners</a><a href="/press-request.html" class="nav-link">Press</a>
         <a href="#waitlist" class="btn-primary">Join waitlist</a>
-      <a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><a href="/admin/tools.html" class="nav-link">Admin Tools</a><a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><a href="/dashboard.html" class="nav-link">Dashboard</a></nav>
+      <a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><span data-admin-only style="display:none"><span data-admin-only style="display:none"><a href="/admin/tools.html" class="nav-link">Admin Tools</a><a href="/restaurants.html" class="nav-link">Restaurants</a><a href="/inventory.html" class="nav-link">Inventory</a><a href="/dashboard.html" class="nav-link">Dashboard</a></nav>
     </div>
   </header>
 
@@ -282,8 +282,8 @@
     .owner-toolbar .ghost{background:transparent;color:#F2E2C4;border:1px solid rgba(255,255,255,.25)}
   </style>
   <div class="owner-toolbar" id="ownerBar">
-    <a href="/admin/#/collections/hero/entries/hero" target="_blank">Edit Hero</a>
-    <a href="/admin/#/collections/faq/entries/faq" target="_blank">Edit FAQ</a>
+    <span data-admin-only style="display:none"><a href="/admin/#/collections/hero/entries/hero" target="_blank">Edit Hero</a>
+    <span data-admin-only style="display:none"><a href="/admin/#/collections/faq/entries/faq" target="_blank">Edit FAQ</a>
     <a href="/admin" class="ghost" target="_blank">Open CMS</a>
   </div>
   <script>
@@ -330,5 +330,6 @@
   </script>
 
   <script src="/assets/js/settings.js"></script>
+  <script src="/assets/js/auth.js"></script>
 </body>
 </html>

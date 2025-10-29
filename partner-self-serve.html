@@ -47,11 +47,12 @@
       const links = document.getElementById('links');
       const list = (data.restaurants||[]);
       links.innerHTML = list.map(r=>{
-        return '<div class="mb-2"><span class="opacity-70">'+r.name+'</span> — <a class="underline" href="/admin/#/collections/restaurants/entries/'+r.id+'" target="_blank">Edit</a></div>';
+        return '<div class="mb-2"><span class="opacity-70">'+r.name+'</span> — <span data-admin-only style="display:none"><a class="underline" href="/admin/#/collections/restaurants/entries/'+r.id+'" target="_blank">Edit</a></div>';
       }).join('');
     }
   </script>
   <script src="/assets/js/forms.js"></script>
   <script src="/assets/js/settings.js"></script>
+  <script src="/assets/js/auth.js"></script>
 </body>
 </html>

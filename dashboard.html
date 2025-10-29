@@ -1,66 +1,31 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Admin Dashboard — Last Table</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard — Last Table</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/assets/css/custom.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+<style>body{background:#0b0b0d;color:#F7F4EE}</style>
 </head>
-<body class="bg-blacklux text-offwhite">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div id="gate" class="glass p-6 rounded-3xl border text-center">
-      <h1 class="display text-3xl font-semibold">Admin Dashboard</h1>
-      <p class="opacity-80">Login required.</p>
-      <button id="login" class="btn-primary mt-4">Log in</button>
-    </div>
-    <div id="panel" class="hidden">
-      <div class="flex items-center justify-between">
-        <h2 class="display text-3xl font-semibold">Overview</h2>
-        <div class="flex gap-2">
-          <a class="btn-primary" href="/inventory.html">Inventory</a>
-          <a class="btn-primary" href="/admin/tools.html">Admin Tools</a>
-          <button id="logout" class="btn-primary">Log out</button>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-6 mt-6">
-        <div class="glass p-6 rounded-3xl border"><canvas id="byStatus"></canvas></div>
-        <div class="glass p-6 rounded-3xl border"><canvas id="byCity"></canvas></div>
-      </div>
-      <div class="glass p-6 rounded-3xl border mt-6">
-        <h3 class="font-semibold mb-3">Upcoming Reservations</h3>
-        <div id="upcoming" class="text-sm"></div>
-      </div>
-    </div>
+<body>
+<header class="border-b border-white/10">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <a href="/" class="flex items-center gap-3"><img src="/assets/logo/lasttable.svg" class="h-8" alt="Last Table"/></a>
+    <nav class="text-sm">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link ml-6" href="/restaurants.html">Restaurants</a>
+      <span data-admin-only style="display:none">
+        <span data-admin-only style="display:none"><a class="nav-link ml-6" href="/admin/">Admin</a></span>
+      </span>
+    </nav>
   </div>
-  <script>
-    const id = window.netlifyIdentity;
-    const gate=document.getElementById('gate'), panel=document.getElementById('panel');
-    function upd(u){ if(u){ gate.classList.add('hidden'); panel.classList.remove('hidden'); boot(); } else { panel.classList.add('hidden'); gate.classList.remove('hidden'); } }
-    if(id){ id.on('init', upd); id.on('login', upd); id.on('logout', ()=>upd(null)); }
-    document.getElementById('login').onclick=()=>id && id.open('login');
-    document.getElementById('logout').onclick=()=>id && id.logout();
+</header>
 
-    async function boot(){
-      const res = await (await fetch('/content/reservations.json',{cache:'no-store'})).json();
-      const restaurants = await (await fetch('/content/restaurants.json',{cache:'no-store'})).json();
-      const rmap = new Map((restaurants.restaurants||[]).map(r=>[r.id,r]));
-      const list = (res.reservations||[]);
-      // Pie: by status
-      const byS = {}; list.forEach(x=>byS[x.status]=(byS[x.status]||0)+1);
-      new Chart(document.getElementById('byStatus'), {type:'doughnut', data:{labels:Object.keys(byS), datasets:[{data:Object.values(byS)}]}});
-      // Bar: by city
-      const byC = {}; list.forEach(x=>{ const R=rmap.get(x.restaurant_id)||{}; const c=R.city||'Unknown'; byC[c]=(byC[c]||0)+1; });
-      new Chart(document.getElementById('byCity'), {type:'bar', data:{labels:Object.keys(byC), datasets:[{data:Object.values(byC)}]}});
-      // Upcoming list
-      const up = list.slice().sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time)).slice(0,10);
-      const wrap = document.getElementById('upcoming');
-      wrap.innerHTML = up.map(x=>{
-        const R=rmap.get(x.restaurant_id)||{}; return `<div class="py-1">${x.date} ${x.time} • ${R.name||'—'} • party ${x.party} • <span class="opacity-70">${x.status}</span></div>`;
-      }).join('');
-    }
-  </script>
-  <script src="/assets/js/settings.js"></script>
-</body>
-</html>
+<main class="max-w-6xl mx-auto px-4 py-10">
+  <h1 class="display text-4xl font-semibold">Welcome</h1>
+  <p class="opacity-80 mt-2">You’re signed in. Explore restaurants, submit interest, or manage your reservations link if shared with you.</p>
+</main>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="/assets/js/auth.js"></script>
+</body></html>
