@@ -43,7 +43,8 @@ collections:
       - label: "Steps"
         name: "steps"
         widget: "list"
-        field: { label: "Step", name: "step", widget: "string" }
+        fields:
+          - { label: "Step", name: "step", widget: "string" }
 
   - name: "footer"
     label: "Footer"
@@ -61,7 +62,8 @@ collections:
       - label: "Cities"
         name: "cities"
         widget: "list"
-        field: { label: "City", name: "city", widget: "string" }
+        fields:
+          - { label: "City", name: "city", widget: "string" }
 
   - name: "changelog"
     label: "Changelog"
@@ -100,47 +102,47 @@ collections:
         name: "colors"
         widget: "object"
         fields:
-          - {label:"Background", name:"background", widget:"string"}
-          - {label:"Text", name:"text", widget:"string"}
-          - {label:"Primary", name:"primary", widget:"string"}
-          - {label:"Accent", name:"accent", widget:"string"}
-          - {label:"Muted", name:"muted", widget:"string"}
-          - {label:"Border", name:"border", widget:"string"}
+          - { label: "Background", name: "background", widget: "string" }
+          - { label: "Text", name: "text", widget: "string" }
+          - { label: "Primary", name: "primary", widget: "string" }
+          - { label: "Accent", name: "accent", widget: "string" }
+          - { label: "Muted", name: "muted", widget: "string" }
+          - { label: "Border", name: "border", widget: "string" }
       - label: "Fonts"
         name: "fonts"
         widget: "object"
         fields:
-          - {label:"Heading", name:"heading", widget:"string"}
-          - {label:"Body", name:"body", widget:"string"}
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Body", name: "body", widget: "string" }
       - label: "Radius"
         name: "radius"
         widget: "object"
         fields:
-          - {label:"Card", name:"card", widget:"number"}
-          - {label:"Button", name:"button", widget:"number"}
+          - { label: "Card", name: "card", widget: "number" }
+          - { label: "Button", name: "button", widget: "number" }
 
   - name: "flags"
     label: "Feature Flags"
     file: "content/flags.json"
     format: "json"
     fields:
-      - {label:"Maintenance Mode", name:"maintenance_mode", widget:"boolean", default:false}
-      - {label:"Announcement Enabled", name:"announcement_enabled", widget:"boolean", default:true}
-      - {label:"Announcement Text", name:"announcement_text", widget:"string", required:false}
-      - {label:"Beta Code Required", name:"beta_code_required", widget:"boolean", default:false}
-      - {label:"Beta Code Value", name:"beta_code_value", widget:"string", required:false}
+      - { label: "Maintenance Mode", name: "maintenance_mode", widget: "boolean", default: false }
+      - { label: "Announcement Enabled", name: "announcement_enabled", widget: "boolean", default: true }
+      - { label: "Announcement Text", name: "announcement_text", widget: "string", required: false }
+      - { label: "Beta Code Required", name: "beta_code_required", widget: "boolean", default: false }
+      - { label: "Beta Code Value", name: "beta_code_value", widget: "string", required: false }
 
   - name: "emails"
     label: "Email Templates"
     file: "content/emails.json"
     format: "json"
     fields:
-      - {label:"Waitlist Subject", name:"waitlist_subject", widget:"string"}
-      - {label:"Waitlist Body (text)", name:"waitlist_body_text", widget:"text"}
-      - {label:"Partner Subject", name:"partner_subject", widget:"string"}
-      - {label:"Partner Body (text)", name:"partner_body_text", widget:"text"}
+      - { label: "Waitlist Subject", name: "waitlist_subject", widget: "string" }
+      - { label: "Waitlist Body (text)", name: "waitlist_body_text", widget: "text" }
+      - { label: "Partner Subject", name: "partner_subject", widget: "string" }
+      - { label: "Partner Body (text)", name: "partner_body_text", widget: "text" }
 
-    - name: "restaurants"
+  - name: "restaurants"
     label: "Restaurants"
     file: "content/restaurants.json"
     format: "json"
@@ -174,16 +176,14 @@ collections:
         name: "reservations"
         widget: "list"
         fields:
-          - {label:"ID", name:"id", widget:"string"}
-          - {label:"Restaurant ID", name:"restaurant_id", widget:"string"}
-          - {label:"Date (YYYY-MM-DD)", name:"date", widget:"string"}
-          - {label:"Time (HH:mm)", name:"time", widget:"string"}
-          - {label:"Party Size", name:"party", widget:"number"}
-          - {label:"Under Name", name:"under_name", widget:"string"}
-          - {label:"Status", name:"status", widget:"select", options:["available","claimed","transferred","fulfilled","cancelled"], default:"available"}
-          - {label:"Confirmation", name:"confirmation", widget:"string", required:false}
-          - {label:"Transfer Notes", name:"transfer_notes", widget:"text", required:false}
-          - {label:"Expires At (ISO)", name:"expires_at", widget:"string", required:false}
-
-  # Add token field for claims
-  - name: "reservations" # duplicate collection block not needed; token already included visually via CMS UI per file
+          - { label: "ID", name: "id", widget: "string" }
+          - { label: "Restaurant ID", name: "restaurant_id", widget: "string" }
+          - { label: "Date (YYYY-MM-DD)", name: "date", widget: "string" }
+          - { label: "Time (HH:mm)", name: "time", widget: "string" }
+          - { label: "Party Size", name: "party", widget: "number" }
+          - { label: "Under Name", name: "under_name", widget: "string" }
+          - { label: "Status", name: "status", widget: "select", options: ["available", "claimed", "transferred", "fulfilled", "cancelled"], default: "available" }
+          - { label: "Confirmation", name: "confirmation", widget: "string", required: false }
+          - { label: "Transfer Notes", name: "transfer_notes", widget: "text", required: false }
+          - { label: "Expires At (ISO)", name: "expires_at", widget: "string", required: false }
+          - { label: "Claim Token", name: "token", widget: "string" }
