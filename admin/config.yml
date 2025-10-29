@@ -140,7 +140,7 @@ collections:
       - {label:"Partner Subject", name:"partner_subject", widget:"string"}
       - {label:"Partner Body (text)", name:"partner_body_text", widget:"text"}
 
-  - name: "restaurants"
+    - name: "restaurants"
     label: "Restaurants"
     file: "content/restaurants.json"
     format: "json"
@@ -149,17 +149,21 @@ collections:
         name: "restaurants"
         widget: "list"
         fields:
-          - {label:"ID", name:"id", widget:"string"}
-          - {label:"Name", name:"name", widget:"string"}
-          - {label:"City", name:"city", widget:"string"}
-          - {label:"Address", name:"address", widget:"string"}
-          - {label:"Latitude", name:"lat", widget:"number"}
-          - {label:"Longitude", name:"lng", widget:"number"}
-          - {label:"Tags", name:"tags", widget:"list", field:{label:"Tag", name:"tag", widget:"string"}}
-          - {label:"Phone", name:"phone", widget:"string", required:false}
-          - {label:"Website URL", name:"url", widget:"string", required:false}
-          - {label:"Exclusivity", name:"exclusivity", widget:"select", options:["invite-only","preferred-partner","public"], default:"preferred-partner"}
-          - {label:"Notes", name:"notes", widget:"text", required:false}
+          - { label: "ID", name: "id", widget: "string" }
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "City", name: "city", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Latitude", name: "lat", widget: "number" }
+          - { label: "Longitude", name: "lng", widget: "number" }
+          - label: "Tags"
+            name: "tags"
+            widget: "list"
+            fields:
+              - { label: "Tag", name: "tag", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string", required: false }
+          - { label: "Website URL", name: "url", widget: "string", required: false }
+          - { label: "Exclusivity", name: "exclusivity", widget: "select", options: ["invite-only", "preferred-partner", "public"], default: "preferred-partner" }
+          - { label: "Notes", name: "notes", widget: "text", required: false }
 
   - name: "reservations"
     label: "Reservations"
